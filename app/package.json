@@ -1,0 +1,26 @@
+{
+  "name": "tetris-pds",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "packageManager": "npm@11.13.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=@tetris/web",
+    "dev:all": "turbo run dev",
+    "build": "turbo run build --filter=@tetris/web...",
+    "build:all": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.0"
+  }
+}
