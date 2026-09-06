@@ -34,7 +34,7 @@ export class InputController {
   private das: number;
   private arr: number;
   private codeToAction = new Map<string, keyof KeyBindings>();
-  private oneShotPending: (keyof KeyBindings)[] = [];
+  private oneShotPending: GameAction[] = [];
   private movement: Record<'moveLeft' | 'moveRight', RepeatableKey> = {
     moveLeft: { heldForMs: null, sinceLastRepeat: 0 },
     moveRight: { heldForMs: null, sinceLastRepeat: 0 },
@@ -93,28 +93,31 @@ export class InputController {
       case 'moveRight':
         if (this.movement[action].heldForMs === null) {
           this.movement[action] = { heldForMs: 0, sinceLastRepeat: 0 };
-          this.oneShotPending.push(action); // immediate first move (test 0 of DAS)
+          this.oneShotPending.push({ type: action === 'moveLeft' ? 'move-left' : 'move-right' }); // immediate first move (test 0 of DAS)
         }
         break;
       case 'softDrop':
         if (!this.softDropHeld) {
           this.softDropHeld = true;
-          this.oneShotPending.push('softDrop');
+          this.oneShotPending.push({ type: 'soft-drop-start' });
         }
         break;
       case 'pause':
         this.pausePressed = true;
         break;
-      default:
-        this.oneShotPending.push(action);
+      default: {
+        const mapped = toEngineAction(action);
+        if (mapped) this.oneShotPending.push(mapped);
+      }
     }
   }
 
   private handleKeyUp(action: keyof KeyBindings): void {
     if (action === 'moveLeft' || action === 'moveRight') {
       this.movement[action] = { heldForMs: null, sinceLastRepeat: 0 };
-    } else if (action === 'softDrop') {
+    } else if (action === 'softDrop' && this.softDropHeld) {
       this.softDropHeld = false;
+      this.oneShotPending.push({ type: 'soft-drop-end' });
     }
   }
 
@@ -126,12 +129,7 @@ export class InputController {
 
   /** Advances DAS/ARR timers by one fixed frame and returns this frame's engine actions. */
   update(frameMs: number): GameAction[] {
-    const actions: GameAction[] = [];
-
-    for (const shot of this.oneShotPending) {
-      const mapped = toEngineAction(shot, this.softDropHeld);
-      if (mapped) actions.push(mapped);
-    }
+    const actions: GameAction[] = [...this.oneShotPending];
     this.oneShotPending = [];
 
     for (const key of ['moveLeft', 'moveRight'] as const) {
@@ -151,14 +149,11 @@ export class InputController {
   }
 }
 
-function toEngineAction(action: keyof KeyBindings, softDropHeld: boolean): GameAction | null {
+/** Maps the one-shot (press-once, no repeat, no hold state) key actions. Movement,
+ * soft drop, and pause are handled explicitly in `handleKeyDown`/`handleKeyUp`
+ * above since they need press *and* release edges, not just a single mapping. */
+function toEngineAction(action: keyof KeyBindings): GameAction | null {
   switch (action) {
-    case 'moveLeft':
-      return { type: 'move-left' };
-    case 'moveRight':
-      return { type: 'move-right' };
-    case 'softDrop':
-      return { type: softDropHeld ? 'soft-drop-start' : 'soft-drop-end' };
     case 'hardDrop':
       return { type: 'hard-drop' };
     case 'rotateCw':
@@ -169,8 +164,6 @@ function toEngineAction(action: keyof KeyBindings, softDropHeld: boolean): GameA
       return { type: 'rotate-180' };
     case 'hold':
       return { type: 'hold' };
-    case 'pause':
-      return null;
     default:
       return null;
   }
