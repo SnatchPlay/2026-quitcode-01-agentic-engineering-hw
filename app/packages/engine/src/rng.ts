@@ -1,4 +1,4 @@
-import type { BagState, TetrominoType } from './types.js';
+import type { BagState, TetrominoType } from './types';
 
 const ALL_PIECES: readonly TetrominoType[] = ['I', 'O', 'T', 'S', 'Z', 'J', 'L'];
 

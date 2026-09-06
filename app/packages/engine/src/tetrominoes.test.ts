@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { getCells, getKickTable, rotateCcw, rotateCw } from './tetrominoes.js';
-import type { RotationState, TetrominoType } from './types.js';
+import { getCells, getKickTable, rotateCcw, rotateCw } from './tetrominoes';
+import type { RotationState, TetrominoType } from './types';
 
 const ALL_TYPES: TetrominoType[] = ['I', 'O', 'T', 'S', 'Z', 'J', 'L'];
 const ALL_ROTATIONS: RotationState[] = ['SPAWN', 'CW', 'FLIP', 'CCW'];

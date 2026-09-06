@@ -1,4 +1,4 @@
-import type { DifficultyPreset, DifficultyPresetName } from './types.js';
+import type { DifficultyPreset, DifficultyPresetName } from './types';
 
 export const DIFFICULTY_PRESETS: Record<Exclude<DifficultyPresetName, 'custom'>, DifficultyPreset> = {
   chill: {

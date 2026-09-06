@@ -1,7 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
-import { createBagState, drawNext, peekNext } from './rng.js';
-import type { TetrominoType } from './types.js';
+import { createBagState, drawNext, peekNext } from './rng';
+import type { TetrominoType } from './types';
 
 const ALL: TetrominoType[] = ['I', 'O', 'T', 'S', 'Z', 'J', 'L'];
 

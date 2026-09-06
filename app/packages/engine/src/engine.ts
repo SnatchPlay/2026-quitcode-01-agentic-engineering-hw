@@ -8,8 +8,8 @@ import {
   isValidPlacement,
   mergePiece,
   pieceCells,
-} from './board.js';
-import { createBagState, drawNext, peekNext } from './rng.js';
+} from './board';
+import { createBagState, drawNext, peekNext } from './rng';
 import {
   clearKindFromLineCount,
   gravityRowsPerSecond,
@@ -17,10 +17,10 @@ import {
   qualifiesForBackToBack,
   scoreLineClear,
   softDropScore,
-} from './scoring.js';
-import { getKickTable, rotateCcw, rotateCw, spawnPosition } from './tetrominoes.js';
-import type { ActivePiece, GameAction, GameConfig, GameState, RotationState, Vec2 } from './types.js';
-import { BOARD_BUFFER_HEIGHT, FRAME_MS } from './types.js';
+} from './scoring';
+import { getKickTable, rotateCcw, rotateCw, spawnPosition } from './tetrominoes';
+import type { ActivePiece, GameAction, GameConfig, GameState, RotationState, Vec2 } from './types';
+import { BOARD_BUFFER_HEIGHT, FRAME_MS } from './types';
 
 /** Rows/second while soft-drop is held — fast, but distinct from an instant hard drop. */
 const SOFT_DROP_ROWS_PER_SECOND = 20;

@@ -1,11 +1,11 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
-import { createEmptyBoard, dropDistance, isValidPlacement } from './board.js';
-import { createGame, step } from './engine.js';
-import { DIFFICULTY_PRESETS } from './presets.js';
-import { replay } from './replay.js';
-import type { Board, GameConfig, GameState, TimedAction } from './types.js';
-import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types.js';
+import { createEmptyBoard, dropDistance, isValidPlacement } from './board';
+import { createGame, step } from './engine';
+import { DIFFICULTY_PRESETS } from './presets';
+import { replay } from './replay';
+import type { Board, GameConfig, GameState, TimedAction } from './types';
+import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types';
 
 function config(overrides: Partial<GameConfig> = {}): GameConfig {
   return {

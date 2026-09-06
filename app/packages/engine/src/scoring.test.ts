@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clearKindFromLineCount, levelForLines, scoreLineClear } from './scoring.js';
+import { clearKindFromLineCount, levelForLines, scoreLineClear } from './scoring';
 
 describe('scoring table', () => {
   it('matches the Tetris Guideline base values at level 1, no combo/B2B/PC', () => {

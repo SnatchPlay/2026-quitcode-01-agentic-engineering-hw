@@ -1,4 +1,4 @@
-import type { RotationState, TetrominoType, Vec2 } from './types.js';
+import type { RotationState, TetrominoType, Vec2 } from './types';
 
 /**
  * Cell offsets for each tetromino x rotation state, using the Super Rotation

@@ -1,6 +1,6 @@
-import { getCells } from './tetrominoes.js';
-import type { ActivePiece, Board, BoardCell, Vec2 } from './types.js';
-import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types.js';
+import { getCells } from './tetrominoes';
+import type { ActivePiece, Board, BoardCell, Vec2 } from './types';
+import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types';
 
 export function createEmptyBoard(): Board {
   return Array.from({ length: BOARD_TOTAL_HEIGHT }, () =>

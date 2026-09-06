@@ -1,6 +1,6 @@
-import { createGame, step } from './engine.js';
-import type { GameConfig, GameState, RunResult, TimedAction } from './types.js';
-import { FRAME_MS } from './types.js';
+import { createGame, step } from './engine';
+import type { GameConfig, GameState, RunResult, TimedAction } from './types';
+import { FRAME_MS } from './types';
 
 /** Safety cap so a malformed/malicious input log can't spin the verifier forever. */
 const MAX_FRAMES = 60 * 60 * 30; // 30 minutes of simulated play

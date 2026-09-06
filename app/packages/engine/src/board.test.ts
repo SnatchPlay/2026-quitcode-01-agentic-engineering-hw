@@ -8,9 +8,9 @@ import {
   isValidPlacement,
   mergePiece,
   pieceCells,
-} from './board.js';
-import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types.js';
-import type { ActivePiece } from './types.js';
+} from './board';
+import { BOARD_TOTAL_HEIGHT, BOARD_WIDTH } from './types';
+import type { ActivePiece } from './types';
 
 const tPieceAt = (x: number, y: number): ActivePiece => ({ type: 'T', rotation: 'SPAWN', position: { x, y } });
 

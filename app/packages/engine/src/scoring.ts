@@ -1,4 +1,4 @@
-import type { ClearKind } from './types.js';
+import type { ClearKind } from './types';
 
 /** Base score per Tetris Guideline scoring table (before the level multiplier). */
 const BASE_SCORE: Record<ClearKind, number> = {
