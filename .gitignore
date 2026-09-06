@@ -14,5 +14,6 @@ repomix-output.xml
 # Next.js / Turborepo build artifacts (apps/web, and future apps/api)
 .next/
 .turbo/
+out/
 *.tsbuildinfo
 next-env.d.ts.bak
